@@ -11,7 +11,8 @@ gem "sprockets-rails", ">= 3.4.1"
 
 # Use sqlite3 as the database for Active Record
 gem "pg"
-
+gem 'cancancan'
+gem "bootstrap-sass"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
