@@ -13,6 +13,7 @@ gem "sprockets-rails", ">= 3.4.1"
 gem "pg"
 gem 'cancancan'
 gem "bootstrap-sass"
+gem 'bcrypt'
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
