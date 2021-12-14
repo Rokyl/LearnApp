@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/cbeer/devise-guests
+  revision: 0a9c0038c5d1d8790907c3bd56cafd0e87525e15
+  branch: master
+  specs:
+    devise-guests (0.8.1)
+      devise
+
+GIT
   remote: https://github.com/heartcombo/devise
   revision: 9f5b83750eef89710b8f2f1e0969c308023e2f05
   branch: main
@@ -226,6 +234,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   debug (>= 1.0.0)
   devise!
+  devise-guests!
   importmap-rails (>= 0.9.2)
   jbuilder (~> 2.11)
   pg

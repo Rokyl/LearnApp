@@ -1,29 +1,26 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  #before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
   def new
-    @user = User.new
+    super
   end
 
   # POST /resource/sign_in
   def create
-    @user = User.new(user_params)
-    if @user.save
-      flash[:success] = "Успешная регистрация"
-      redirect_to @user
-    else
-      flash[:error] = "Retry"
-      render 'new'
-    end
+    self.resource = warden.authenticate!(auth_options)
+    set_flash_message!(:notice, :signed_in)
+    sign_in(resource_name, resource)
+    respond_with resource, location: after_sign_in_path_for(resource)
   end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    sign_out
+    redirect_to root_path
+  end
 
   # protected
 
