@@ -16,6 +16,11 @@ gem "bootstrap-sass"
 gem 'bcrypt'
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem 'devise-guests', git: 'https://github.com/cbeer/devise-guests', branch: 'master'
+gem 'will_paginate', :require => nil
+gem 'bootstrap-will_paginate'
+gem 'state_machine'
+gem 'ruby-graphviz', :require => 'graphviz'
+gem 'faker'
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
