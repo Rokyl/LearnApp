@@ -29,7 +29,7 @@ class AdsController < ApplicationController
   private
 
   def ad_params
-    params.require(:ad).permit(:content, :slug, {photos: []})
+    params.require(:ad).permit(:content, {pictures: []})
   end
 
   def correct_user

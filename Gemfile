@@ -14,6 +14,13 @@ gem "pg"
 gem 'cancancan'
 gem "bootstrap-sass"
 gem 'bcrypt'
+gem "carrierwave"
+gem 'mini_magick'
+gem 'activestorage-validator'
+gem "rmagick", :require => 'rmagick'
+gem 'fog'
+gem 'jquery-rails'
+gem 'turbolinks'
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem 'devise-guests', git: 'https://github.com/cbeer/devise-guests', branch: 'master'
 gem 'will_paginate', :require => nil

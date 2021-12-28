@@ -1,0 +1,77 @@
+<%= form_for(@ad, html: { multipart: true }) do |f| %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Compose new ad..." %>
+  </div><div class="form-group">
+  <label class="btn btn-default">Add images<span style="display:none;">
+           <%= f.file_field :pictures, multiple: true,  accept:'image/jpeg,image/gif,image/png', id: "files"%></span></label>
+</div>
+
+  <div class="image-box">
+    <div id="result"></div>
+  </div>
+  &nbsp;
+  <div class="form-group">
+    <%= f.submit :class=>"btn btn-primary", :name=>"save", :value=>"Save"%>
+<% end %>
+</div>
+
+<script>
+    window.onload = function(){
+
+        //Check File API support
+        if(window.File && window.FileList && window.FileReader)
+        {
+            var filesInput = document.getElementById("files");
+
+            filesInput.addEventListener("change", function(event){
+
+                var files = event.target.files; //FileList object
+                var output = document.getElementById("result");
+
+                for(var i = 0; i< files.length; i++)
+                {
+                    var file = files[i];
+
+                    //Only pics
+                    if(!file.type.match('image'))
+                        continue;
+
+                    var picReader = new FileReader();
+
+                    picReader.addEventListener("load",function(event){
+
+                        var picFile = event.target;
+
+                        var span = document.createElement("span");
+
+                        span.innerHTML = ['<img class="thumb" src="', picFile.result, '" title="', picFile.name, '"/><span class="remove_img_preview"></span>'].join('');
+
+
+
+                        output.insertBefore(span,null);
+                        span.children[1].addEventListener("click", function(event){
+                            span.parentNode.removeChild(span);
+                        });
+
+                    });
+
+                    //Read the image
+                    picReader.readAsDataURL(file);
+                }
+
+            });
+        }
+        else
+        {
+            console.log("Your browser does not support File API");
+        }
+    }
+</script>
+<script type="text/javascript">
+    $('#micropost_picture').bind('change', function() {
+        var size_in_megabytes = this.files[0].size/1024/1024;
+        if (size_in_megabytes > 5) {
+            alert('Maximum file size is 5MB. Please choose a smaller file.');
+        }
+    });
+</script>

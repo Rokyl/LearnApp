@@ -1,0 +1,9 @@
+
+<% if signed_in? %>
+  <h1>Create your Ad</h1>
+  <section class="order_form">
+    <%= render 'shared/ad_form' %>
+  </section>
+<% else %>
+  <h1>Please Log in</h1>
+<% end %>
