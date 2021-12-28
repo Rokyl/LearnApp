@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_12_23_151820) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "state"
     t.string "type"
-    t.index ["user_id", "created_at"], name: "index_ads_on_user_id_and_created_at"
+    t.index %w[user_id created_at], name: "index_ads_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_ads_on_user_id"
   end
 

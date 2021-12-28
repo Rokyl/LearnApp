@@ -1,10 +1,12 @@
 <% provide(:title, 'All ads') %>
-<h1>All ads</h1>
+<h1 class="jumbotron center">Welcome to Ads Project</h1>
+<% if @ads.any? %>
 <%= will_paginate @ads %>
 <div class="col-md-8">
+
   <ol class="ads">
     <%= render @ads %>
   </ol>
   <%= will_paginate @ads %>
-  <%= will_paginate %>
+  <% end %>
 </div>
