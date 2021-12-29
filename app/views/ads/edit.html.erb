@@ -9,16 +9,22 @@
 
       <%= f.label :content %>
       <%= f.text_area :content, class: 'form-control' %>
-      <% @ad.pictures.each do |image| %>
-        <%= image_tag(image.variant(resize_to_fit: [100,100]))%>
+      <% @ad.pictures.each_with_index do |picture, picture_index| %>
+        <%= image_tag(picture.thumb.url)%>
+        <%= link_to "delete", ad_picture_path(@ad, picture_index), method: :delete, remote: false %>
       <% end %>
-      <label class="btn btn-default">Add images<span style="display:none;">
-           <%= f.file_field :pictures, multiple: true,  accept:'image/jpeg,image/gif,image/png', id: "files"%></span></label>
-      <div class="image-box">
-        <div id="result"></div>
-      </div>
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <%= f.submit "Upload ad", class: "btn btn-primary" %>
+
+
     <% end %>
+    <%= form_for @ad, url: ad_pictures_path(@ad), method: :post do |fr|%>
+      <label class="btn btn-default">Add images<span style="display:none;">
+           <%= fr.file_field :pictures, multiple: true,  accept:'image/jpeg,image/gif,image/png', id: "files"%></span></label>
+      <%= fr.submit "Save changes", class: "btn btn-primary" %>
+      <div class="image-box">
+    <div id="result"></div>
+  </div>
+    <%end %>
 
     <script>
         window.onload = function(){

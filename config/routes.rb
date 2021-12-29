@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   }
   root  to: 'ads#index'
   resources :users
-  resources :ads
+  resources :ads do
+    resources :pictures, :only => [:create, :destroy]
+  end
 
 
 end

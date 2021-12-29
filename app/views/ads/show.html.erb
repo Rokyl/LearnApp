@@ -4,8 +4,8 @@
     <section class="ad-detail">
 
       <h1 class="center"><%= @ad.title %></h1>
-        <% @ad.pictures.each do |image| %>
-          <%= image_tag(image.variant(resize_to_fit: [500,500]))%>
+        <% @ad.pictures.each do |picture| %>
+          <%= image_tag(picture.thumb.url)%>
         <% end %>
 
 

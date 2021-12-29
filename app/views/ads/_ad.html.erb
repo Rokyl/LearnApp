@@ -6,7 +6,7 @@
   </ul>
   <ul>
     <% ad.pictures.each do |image| %>
-      <%= image_tag(image.variant(resize_to_fit: [300,300]))%>
+      <%= image_tag(image.thumb.url)%>
     <% end %>
   </ul>
   <ul>
