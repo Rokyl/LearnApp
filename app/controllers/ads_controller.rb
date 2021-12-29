@@ -20,6 +20,24 @@ class AdsController < ApplicationController
     end
   end
 
+  def show
+    @ad = Ad.find(params[:id])
+  end
+
+  def edit
+    @ad = Ad.find(params[:id])
+  end
+
+  def update
+    @ad = Ad.find(params[:id])
+    if @ad.update(ad_params)
+      flash[:success] = "Ad successfully published"
+      redirect_to @ad
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @ad.destroy
     flash[:success] = "Ads deleted"
@@ -29,7 +47,7 @@ class AdsController < ApplicationController
   private
 
   def ad_params
-    params.require(:ad).permit(:content, {pictures: []})
+    params.require(:ad).permit(:title, :content, {pictures: []}, :status, :type)
   end
 
   def correct_user

@@ -21,6 +21,7 @@ User.create!(name:  "Example User",
 end
 users = User.order(:created_at).take(6)
 50.times do
+  title = Faker::Lorem.word
   content = Faker::Lorem.sentence
-  users.each { |user| user.ads.create!(content: content) }
+  users.each { |user| user.ads.create!(content: content, title: title) }
 end

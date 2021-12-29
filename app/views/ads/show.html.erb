@@ -1,0 +1,18 @@
+<% provide(:title, @ad.title) %>
+<div class="row">
+  <aside class="center">
+    <section class="ad-detail">
+
+      <h1 class="center"><%= @ad.title %></h1>
+        <% @ad.pictures.each do |image| %>
+          <%= image_tag(image.variant(resize_to_fit: [500,500]))%>
+        <% end %>
+
+
+
+    </section>
+    <div>
+    <%= @ad.content %>
+    </div>
+  </aside>
+</div>
