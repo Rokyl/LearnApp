@@ -37,6 +37,7 @@ class AdsController < ApplicationController
     if current_user == @ad.user
     if @ad.update(ad_params)
       flash[:success] = "Ad successfully published"
+      @ad.update(state: 1)
       redirect_to @ad
     else
       render 'edit'

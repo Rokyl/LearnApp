@@ -2,17 +2,18 @@
 <div class="row">
   <aside class="center">
     <section class="ad-detail">
-
-      <h1 class="center"><%= @ad.title %></h1>
+      <h1 class="center"><%= @ad.title %>  </h1>
         <% @ad.pictures.each do |picture| %>
           <%= image_tag(picture.thumb.url)%>
         <% end %>
-
-
-
     </section>
     <div>
     <%= @ad.content %>
+    </div>
+    <div>
+      <%if @ad.user == current_user %>
+        <h1> <%= link_to "Edit", edit_ad_path %></h1>
+        <%end %>
     </div>
   </aside>
 </div>

@@ -16,7 +16,7 @@
     <% end %>
     <% @ad.pictures.each_with_index do |picture, picture_index| %>
        <span class="picture"><%= image_tag(picture.thumb.url)%>
-         <%= link_to "delete", ad_picture_path(@ad, picture_index), method: :delete, remote: false, class: "delete-picture"%>
+         <%= link_to "delete", ad_picture_path(@ad, picture_index), method: :delete, remote: true, class: "delete-picture"%>
        </span>
     <% end %>
     <%= form_for @ad, url: ad_pictures_path(@ad), method: :post do |fr|%>

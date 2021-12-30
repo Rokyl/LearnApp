@@ -1,4 +1,4 @@
-<h4> <%= ad.title %></h4>
+<h4> <%= link_to "#{ad.title}", ad_path(ad.id) %></h4>
   <ul><span class="content">
 
     <%= ad.content %>
