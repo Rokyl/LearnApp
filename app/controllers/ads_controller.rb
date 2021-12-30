@@ -24,17 +24,25 @@ class AdsController < ApplicationController
   end
 
   def edit
-    @ad = Ad.find(params[:id])
+    ad = Ad.find(params[:id])
+    if current_user == ad.user
+      @ad = Ad.find(params[:id])
+    else
+      redirect_back fallback_location: root_path
+    end
   end
 
   def update
     @ad = Ad.find(params[:id])
-
+    if current_user == @ad.user
     if @ad.update(ad_params)
       flash[:success] = "Ad successfully published"
       redirect_to @ad
     else
       render 'edit'
+    end
+    else
+      redirect_to root_path
     end
   end
 

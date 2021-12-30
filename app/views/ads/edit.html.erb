@@ -9,13 +9,15 @@
 
       <%= f.label :content %>
       <%= f.text_area :content, class: 'form-control' %>
-      <% @ad.pictures.each_with_index do |picture, picture_index| %>
-        <%= image_tag(picture.thumb.url)%>
-        <%= link_to "delete", ad_picture_path(@ad, picture_index), method: :delete, remote: false %>
-      <% end %>
+
       <%= f.submit "Upload ad", class: "btn btn-primary" %>
 
 
+    <% end %>
+    <% @ad.pictures.each_with_index do |picture, picture_index| %>
+       <span class="picture-<%= picture_index %>"><%= image_tag(picture.thumb.url)%>
+         <%= link_to "delete", ad_picture_path(@ad, picture_index), method: :delete, remote: true, data_picture_id: picture_index%>
+       </span>
     <% end %>
     <%= form_for @ad, url: ad_pictures_path(@ad), method: :post do |fr|%>
       <label class="btn btn-default">Add images<span style="display:none;">
@@ -26,6 +28,20 @@
   </div>
     <%end %>
 
+
+    <script>
+        window.addEventListener("load", () => {
+            const element = document.querySelector("#new-article");
+            element.addEventListener("ajax:success", (event) => {
+                const [_data, _status, xhr] = event.detail;
+                element.insertAdjacentHTML("beforeend", xhr.responseText);
+                console.log('EVENT FIRED');
+            });
+            element.addEventListener("ajax:error", () => {
+                element.insertAdjacentHTML("beforeend", "<p>ERROR</p>");
+            });
+        });
+    </script>
     <script>
         window.onload = function(){
 
