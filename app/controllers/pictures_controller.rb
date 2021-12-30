@@ -11,10 +11,8 @@ class PicturesController < ApplicationController
     remove_image_at_index(params[:id].to_i)
     flash[:error] = "Failed deleting image" unless @ad.save
     respond_to do |format|
-
       format.html # edit.html.erb
       format.json { render json: "Deleted successfully!" }
-
     end
   end
 
