@@ -4,12 +4,10 @@
   <%= link_to "New add", new_ad_path %>
   <% if @ads.any? %>
     <% @ads.each do |ad| %>
-      <%= will_paginate @ads.state[2] %>
       <div class="col-md-8">
         <ol class="ads">
-          <%= render @ads.state[2] %>
+          <%= render ad if ad.status == 'draft' %>
         </ol>
-        <%= will_paginate @ads %>
     <% end %>
   <% end %>
 <% else %>
