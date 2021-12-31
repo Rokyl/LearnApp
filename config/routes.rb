@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     resources :pictures, :only => [:create, :destroy]
   end
 
-
+  namespace :admin do
+    resources :ads
+  end
 end
 
 
