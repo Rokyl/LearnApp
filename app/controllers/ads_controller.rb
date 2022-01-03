@@ -6,7 +6,8 @@ class AdsController < ApplicationController
   end
 
   def index
-    @ads = Ad.paginate(page: params[:page])
+    @ads = Ad.where(:status => "published").paginate(page: params[:page])
+    @ads_for_admin = Ad.where(:status => "pending").paginate(page: params[:page])
   end
 
   def create
@@ -37,7 +38,7 @@ class AdsController < ApplicationController
     if current_user == @ad.user
     if @ad.update(ad_params)
       flash[:success] = "Ad successfully published"
-      @ad.update(state: 1)
+      @ad.update(status: :pending)
       redirect_to @ad
     else
       render 'edit'

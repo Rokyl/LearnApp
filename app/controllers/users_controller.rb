@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @ads_for_current_user = Ad.where(:user_id => current_user.id).paginate(:page => params[:page]) if current_user!=nil
   end
 
   def new

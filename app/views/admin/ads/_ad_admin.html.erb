@@ -1,0 +1,24 @@
+<h4> <%= link_to "#{ad.title}", ad_path(ad.id) %></h4>
+<ul><span class="content">
+    <%= ad.content %>
+    </span>
+</ul>
+<ul>
+  <% ad.pictures.each do |image| %>
+    <%= image_tag(image.thumb.url)%>
+  <% end %>
+</ul>
+<ul>
+  <span class="user"> Author: <%= ad.user.name %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(ad.created_at) %> ago.</span>
+</ul>
+<ul>
+    <span class="editing-ad-links">
+    <% if current_user == ad.user%>
+      <%= link_to "accept", edit_admin_ad_path(ad, status: :accept) %>
+    <% end %>
+  </span>
+</ul>
+
+<br>

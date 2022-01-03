@@ -1,21 +1,13 @@
 <% provide(:title, 'All ads') %>
 <h1 class="jumbotron center">Welcome to Ads Project</h1>
-<% if current_user == nil || current_user.role != 'admin' %>
-  <%= link_to "New add", new_ad_path %>
+  <% if current_user != nil && current_user.role != 'admin'   %><%= link_to "New add", new_ad_path %> <% end %>
   <% if @ads.any? %>
-    <% @ads.each do |ad| %>
-      <div class="col-md-8">
-        <ol class="ads">
-          <%= render ad if ad.status == 'draft' %>
-        </ol>
-    <% end %>
+    <div class="col-md-8">
+      <%= will_paginate @ads %>
+      <ol class="ads">
+        <%= render @ads %>
+      </ol>
+      <%= will_paginate @ads %>
   <% end %>
-<% else %>
-  <% if @ads.state[1].any? %>
-    <%= will_paginate @ads.state[1] %>
-    <ol>
-      <%= render @ads.state[1] %>
-    </ol>
-  <% end %>
-<% end %>
+
 </div>

@@ -5,13 +5,13 @@
       <ul class="nav navbar-nav navbar-right">
       <li> <%= link_to "Home", root_path %> </li>
         <% if user_signed_in? %>
-          <li><%= link_to "Users", users_path %></li>
+          <li><%= link_to "Pending ads", admin_ads_path if current_user.role == "admin" %></li>
+          <li><%= link_to "My ads", current_user %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
               <li>
@@ -20,10 +20,17 @@
             </ul>
           </li>
         <% else %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Sign in/Sign up <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu">
           <li> <%= link_to "Log in", new_user_session_path %> </li>
           <li> <%= link_to "Registration", new_user_registration_path %></li>
+          </ul>
+          </li>
         <% end %>
-      <
+
       </ul>
     </nav>
   </div>

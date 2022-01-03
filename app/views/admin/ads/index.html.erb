@@ -1,0 +1,7 @@
+<% if @ads.any? %>
+  <%= will_paginate @ads %>
+  <ol>
+    <%= render partial: 'ad_admin', collection: @ads, as: :ad %>
+  </ol>
+  <%= will_paginate @ads %>
+<% end %>
