@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'tags/new'
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
@@ -7,7 +8,7 @@ Rails.application.routes.draw do
   resources :ads do
     resources :pictures, :only => [:create, :destroy]
   end
-
+  resources :tags
   namespace :admin do
     resources :ads
   end

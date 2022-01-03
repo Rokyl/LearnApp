@@ -26,3 +26,13 @@ users = User.order(:created_at).take(6)
   content = Faker::Lorem.sentence
   users.each { |user| user.ads.create!(content: content, title: title) }
 end
+User.create!(name:  "Rokyl",
+             email: "s123@ex.com",
+             password:              "foobar",
+             password_confirmation: "foobar"
+             )
+
+user = User.last
+title = Faker::Lorem.word
+content = Faker::Lorem.sentence
+user.ads.create!(content: content, title: title, status: "pending")

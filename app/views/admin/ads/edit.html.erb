@@ -1,1 +1,16 @@
-frfdfd
+<% if @variant == '1' %>
+  <%= form_for(@ad) do |f| %>
+    <%= f.label :tags_id %>
+    <%= f.select :tags_id, @tags %>
+    <%= link_to "Add new type", new_tag_path%>
+    <%= f.hidden_field :status, value: "published" %>
+    <%= f.submit %>
+  <% end %>
+<% else %>
+  <%= form_for(@ad) do |f| %>
+    <%= f.label :reason %>
+    <%= f.text_field :reason %>
+    <%= f.hidden_field :status, value: "declined" %>
+    <%= f.submit %>
+  <% end %>
+<% end %>

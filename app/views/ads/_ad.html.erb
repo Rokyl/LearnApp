@@ -1,25 +1,25 @@
 <h4> <%= link_to "#{ad.title}", ad_path(ad.id) %></h4>
-  <ul><span class="content">
+<ul><span class="content">
 
     <%= ad.content %>
     </span>
-  </ul>
-  <ul>
-    <% ad.pictures.each do |image| %>
-      <%= image_tag(image.thumb.url)%>
-    <% end %>
-  </ul>
-  <ul>
-    <span class="user"> Author: <%= ad.user.name %></span>
-    <span class="timestamp">
+</ul>
+<ul>
+  <% ad.pictures.each do |image| %>
+    <%= image_tag(image.thumb.url) %>
+  <% end %>
+</ul>
+<ul>
+  <span class="user"> Author: <%= ad.user.name %></span>
+  <span class="timestamp">
     Posted <%= time_ago_in_words(ad.created_at) %> ago.</span>
-  </ul>
-  <ul>
+</ul>
+<ul>
     <span class="editing-ad-links">
-    <% if current_user!=nil && (current_user == ad.user || current_user.role== "admin")%>
-      <%= link_to "delete", ad, method: :delete, data: {confirm: "Are you Sure"} %>
+    <% if current_user != nil && (current_user == ad.user || current_user.role == "admin") %>
+      <%= link_to "delete", ad, method: :delete, data: { confirm: "Are you Sure" } %>
     <% end %>
   </span>
-  </ul>
+</ul>
 
 <br>

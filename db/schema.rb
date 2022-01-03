@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_01_104901) do
+ActiveRecord::Schema.define(version: 2022_01_03_173955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,14 +48,21 @@ ActiveRecord::Schema.define(version: 2022_01_01_104901) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "published_at", precision: 6
+    t.datetime "published_at"
     t.string "title"
     t.string "pictures", array: true
     t.integer "status"
-    t.string "type"
     t.string "reason", default: ""
+    t.bigint "tags_id"
+    t.index ["tags_id"], name: "index_ads_on_tags_id"
     t.index ["user_id", "created_at"], name: "index_ads_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_ads_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,5 +82,6 @@ ActiveRecord::Schema.define(version: 2022_01_01_104901) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "ads", "tags", column: "tags_id"
   add_foreign_key "ads", "users"
 end
