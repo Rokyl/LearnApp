@@ -1,12 +1,15 @@
 <% provide(:title, @user.name) %>
 <div class="row">
   <div class="col-md-8">
-    <% if @user.ads.any? %>
+    <% if @user.ads.any? && signed_in?%>
+      <%= link_to "edit #{@user.name}", edit_user_path if current_user.role == "admin"%>
       <h3>My ads (<%= @user.ads.count %>)</h3>
       <ol class="ads">
         <%= render @ads_for_current_user %>
       </ol>
       <%= will_paginate @ads_for_current_user %>
+      <% else %>
+    <h1> No content</h1>
     <% end %>
   </div>
 </div>

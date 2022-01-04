@@ -25,6 +25,8 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+      <%= f.label "Admin role" if current_user.role == "admin" if current_user.role == "admin" && current_user!=@user%>
+      <%= f.check_box :role, {}, "admin", "user" if current_user.role == "admin" && current_user!=@user%>
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
 

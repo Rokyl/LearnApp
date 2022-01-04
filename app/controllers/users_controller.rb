@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
 
-
+  def index
+    @users = User.all.paginate(page: params[:page])
+  end
   def show
     @user = User.find(params[:id])
     @ads_for_current_user = Ad.where(:user_id => current_user.id).paginate(:page => params[:page]) if current_user!=nil
@@ -28,6 +30,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    puts params
     if @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -41,7 +44,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
   end
 
 end
