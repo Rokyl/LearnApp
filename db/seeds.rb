@@ -33,6 +33,9 @@ User.create!(name:  "Rokyl",
              )
 
 user = User.last
-title = Faker::Lorem.word
+title = "To Accept"
+content = Faker::Lorem.sentence
+user.ads.create!(content: content, title: title, status: "pending")
+title = "To Decline"
 content = Faker::Lorem.sentence
 user.ads.create!(content: content, title: title, status: "pending")

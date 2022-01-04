@@ -17,6 +17,7 @@
     <span class="editing-ad-links">
     <% if current_user.role == "admin"%>
       <%= link_to "accept", edit_admin_ad_path(ad, variant: 1) %>
+        <%= link_to "decline", edit_admin_ad_path(ad, variant: 2) %>
     <% end %>
   </span>
 </ul>

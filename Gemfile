@@ -27,6 +27,7 @@ gem 'will_paginate', :require => nil
 gem 'bootstrap-will_paginate'
 gem 'state_machine'
 gem 'ruby-graphviz', :require => 'graphviz'
+gem 'whenever', require: false
 gem 'faker'
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"

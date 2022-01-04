@@ -1,6 +1,7 @@
 class AdsController < ApplicationController
   before_action :authenticate_user!, only: %i[create destroy]
   before_action :correct_user, only: :destroy
+
   def new
     @ad = Ad.new
   end
@@ -36,13 +37,13 @@ class AdsController < ApplicationController
   def update
     @ad = Ad.find(params[:id])
     if current_user == @ad.user
-    if @ad.update(ad_params)
-      flash[:success] = "Ad successfully published"
-      @ad.update(status: :pending)
-      redirect_to @ad
-    else
-      render 'edit'
-    end
+      if @ad.update(ad_params)
+        flash[:success] = "Ad successfully published"
+        @ad.update(status: :pending)
+        redirect_to @ad
+      else
+        render 'edit'
+      end
     else
       redirect_to root_path
     end
@@ -55,18 +56,16 @@ class AdsController < ApplicationController
   end
 
 
+
   private
 
   def ad_params
-    params.require(:ad).permit(:title, :content, {pictures: []}, :status, :type)
+    params.require(:ad).permit(:title, :content, { pictures: [] }, :status, :type)
   end
-
-
 
   def correct_user
     @ad = current_user.ads.find(params[:id])
     redirect_to root_url if @ad.nil?
   end
-
 
 end
