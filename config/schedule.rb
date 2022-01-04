@@ -14,7 +14,7 @@
 # end
 #
  every 1.hour do
-   runner Ad.make_ad_archived
+   runner "ArchiveAds.archive_ads"
  end
 
 

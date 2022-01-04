@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_173955) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "published_at"
+    t.datetime "published_at", precision: 6
     t.string "title"
     t.string "pictures", array: true
     t.integer "status"
